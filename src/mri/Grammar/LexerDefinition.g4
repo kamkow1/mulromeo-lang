@@ -10,13 +10,14 @@ INT_VAL             : '-'? '0'..'9'+;
 FLT_VAL             : '-'? ('0'..'9')+ '.' ('0'..'9')*;
 
 // opertators
-ASSIGN      : '=';
-ADD         : '+';
-SUB         : '-';
-DIV         : '/';
-MUL         : '*';
-POW         : '^';
+ASSIGN              : '=';
+ADD                 : '+';
+SUB                 : '-';
+DIV                 : '/';
+MUL                 : '*';
+POW                 : '^';
 // terminator
-TERMINATOR  : [ \r\n];
-IDENTIFIER  : [a-zA-Z_] [a-zA-Z_0-9]*;
-WHITESPACE  : [ \t]+ -> skip;
+TERMINATOR          : ';';
+
+IDENTIFIER          : [a-zA-Z_] [a-zA-Z_0-9]*;
+WHITESPACE          : [ \r\n\t]+ -> skip;

@@ -1,19 +1,20 @@
-﻿namespace mri;
+﻿using Newtonsoft.Json;
+
+namespace mri;
 
 public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 {
-    private Dictionary<string, object?> Variables = new();
+    private readonly Dictionary<string, object?> _variables = new();
 
     public override object? VisitVar_assign(ParserDefinition.Var_assignContext context)
     {
         var name = context.IDENTIFIER().GetText();
         var value = Visit(context.expression());
 
-        if (Variables.ContainsKey(name))
-            Variables.Add(name, value);
+        if (_variables.ContainsKey(name))
+            _variables.Add(name, value);
         else
-            Variables[name] = value;
-        
+            _variables[name] = value;
         return null;
     }
 
