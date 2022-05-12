@@ -33,7 +33,7 @@ return_type:
     |   FLOAT;
     
 func_def:
-        AT return_type IDENTIFIER LPAREN (IDENTIFIER (',' IDENTIFIER)*)? RPAREN LBRACE block RBRACE;
+        return_type IDENTIFIER LPAREN (IDENTIFIER (',' IDENTIFIER)*)? RPAREN LBRACE block RBRACE;
 
 func_invoke:
         IDENTIFIER LPAREN (expression (',' expression)*)? RPAREN;

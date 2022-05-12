@@ -1,10 +1,30 @@
-﻿using Newtonsoft.Json;
+﻿using System.Net;
+using Newtonsoft.Json;
 
 namespace mri;
 
 public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 {
     private readonly Dictionary<string, object?> _variables = new();
+
+    public AstNodeVisitor()
+    {
+        _variables["get_img"] = new Func<object?[], object?>(GetImg);
+        _variables["print"] = new Func<object?[], object?>(Print);
+    }
+
+    private object? Print(object? text)
+    {
+        Console.WriteLine(text);
+        return null;
+    }
+
+    private object GetImg(object? url)
+    {
+        using var client = new WebClient();
+        var file = client.DownloadData(url.ToString());
+        return file;
+    }
 
     public override object? VisitVar_assign(ParserDefinition.Var_assignContext context)
     {
@@ -15,15 +35,22 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
             _variables.Add(name, value);
         else
             _variables[name] = value;
-        
-        Console.WriteLine(JsonConvert.SerializeObject(_variables, Formatting.Indented));
         return null;
     }
 
-    public override object? VisitInvokeFunction(ParserDefinition.InvokeFunctionContext context)
+    public override object? VisitFunc_invoke(ParserDefinition.Func_invokeContext context)
     {
-        Console.WriteLine("hello");
-        return null;
+        var name = context.IDENTIFIER().GetText();
+        var args = context.expression().Select(Visit).ToArray();
+        
+        Console.WriteLine(name);
+
+        if (!_variables.ContainsKey(name))
+            throw new Exception($"{name} is not defined");
+
+        var func = (Func<object?[], object?>)_variables[name];
+        
+        return func(args);
     }
 
     public override object? VisitAddExpression(ParserDefinition.AddExpressionContext context)
