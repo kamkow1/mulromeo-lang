@@ -1,14 +1,3 @@
-﻿some_var = 5;
-other_var = "3544";
+﻿res = get_img("https://picsum.photos/200/300");
 
-some_var = 435;
-
-str_mul = "hello abc" * "hello kmd";
-
-str_div = "abc" / "cde";
-
-print("hi");
-
-res = get_img("https://picsum.photos/200/300");
-
-print(res);
+save("./test.png", res);

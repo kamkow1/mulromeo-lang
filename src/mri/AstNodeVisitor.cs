@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace mri;
@@ -10,8 +9,18 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 
     public AstNodeVisitor()
     {
-        _variables["get_img"] = new Func<object?[], object?>(GetImg);
-        _variables["print"] = new Func<object?[], object?>(Print);
+        _variables["get_img"]   = new Func<object?[], object?>(GetImg);
+        _variables["print"]     = new Func<object?[], object?>(Print);
+        _variables["save"] = new Func<object?[], object?>(Save);
+    }
+
+    private object? Save(object?[] data)
+    {
+        var path = data[0];
+        var content = _variables[data[1] as string];
+        
+        File.WriteAllBytes(path as string, content as byte[]);
+        return null;
     }
 
     private object? Print(object?[] inputs)
