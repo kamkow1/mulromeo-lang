@@ -81,6 +81,26 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.func_invoke"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFunc_invoke([NotNull] ParserDefinition.Func_invokeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.func_invoke"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFunc_invoke([NotNull] ParserDefinition.Func_invokeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.arg_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArg_list([NotNull] ParserDefinition.Arg_listContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.arg_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArg_list([NotNull] ParserDefinition.Arg_listContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
@@ -104,6 +124,18 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitAddExpression([NotNull] ParserDefinition.AddExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>funcInvoke</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFuncInvoke([NotNull] ParserDefinition.FuncInvokeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>funcInvoke</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFuncInvoke([NotNull] ParserDefinition.FuncInvokeContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>divExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.

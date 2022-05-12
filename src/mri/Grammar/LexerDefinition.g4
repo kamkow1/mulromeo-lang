@@ -19,5 +19,7 @@ POW                 : '^';
 // terminator
 TERMINATOR          : ';';
 
+COMMA               : ',';
+
 IDENTIFIER          : [a-zA-Z_] [a-zA-Z_0-9]*;
 WHITESPACE          : [ \r\n\t]+ -> skip;
