@@ -1,4 +1,4 @@
-﻿lexer grammar Lexer;
+lexer grammar LexerDefinition;
 
 options {
     language = CSharp;
