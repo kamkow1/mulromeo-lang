@@ -48,6 +48,18 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitParse([NotNull] ParserDefinition.ParseContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.block"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlock([NotNull] ParserDefinition.BlockContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.block"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlock([NotNull] ParserDefinition.BlockContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ParserDefinition.statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -96,6 +108,30 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitConstant([NotNull] ParserDefinition.ConstantContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.return_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReturn_type([NotNull] ParserDefinition.Return_typeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.return_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReturn_type([NotNull] ParserDefinition.Return_typeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.func_def"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFunc_def([NotNull] ParserDefinition.Func_defContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.func_def"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFunc_def([NotNull] ParserDefinition.Func_defContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ParserDefinition.func_invoke"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -107,18 +143,6 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFunc_invoke([NotNull] ParserDefinition.Func_invokeContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="ParserDefinition.arg_list"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterArg_list([NotNull] ParserDefinition.Arg_listContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="ParserDefinition.arg_list"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitArg_list([NotNull] ParserDefinition.Arg_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
@@ -148,20 +172,6 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAddExpression([NotNull] ParserDefinition.AddExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>funcInvoke</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFuncInvoke([NotNull] ParserDefinition.FuncInvokeContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>funcInvoke</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFuncInvoke([NotNull] ParserDefinition.FuncInvokeContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>divExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -175,6 +185,20 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDivExpression([NotNull] ParserDefinition.DivExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>invokeFunction</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInvokeFunction([NotNull] ParserDefinition.InvokeFunctionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>invokeFunction</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInvokeFunction([NotNull] ParserDefinition.InvokeFunctionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>subExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.

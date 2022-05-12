@@ -5,33 +5,42 @@ options {
     language = CSharp;
 }
 
-parse: statement*;
+parse: block;
+
+block: statement*;
 
 statement:
         var_assign              TERMINATOR
     |   var_declare             TERMINATOR
-    |   expression              TERMINATOR;
+    |   expression              TERMINATOR
+    |   func_def;
     
 var_assign:
         IDENTIFIER ASSIGN expression;
         
 var_declare:
-        IDENTIFIER;
+        DECLARE IDENTIFIER;
         
 constant:
         INT_VAL
     |   STR_VAL
     |   FLT_VAL;
     
-func_invoke:
-        IDENTIFIER arg_list;
+return_type:
+    |   VOID
+    |   INT
+    |   STRING
+    |   FLOAT;
     
-arg_list:
-        (expression (',' expression)*)?;    
+func_def:
+        AT return_type IDENTIFIER LPAREN (IDENTIFIER (',' IDENTIFIER)*)? RPAREN LBRACE block RBRACE;
+
+func_invoke:
+        IDENTIFIER LPAREN (expression (',' expression)*)? RPAREN;
         
 expression:
         constant                    #constantExpression
-    |   func_invoke                 #funcInvoke
+    |   func_invoke                 #invokeFunction
     |   expression ADD expression   #addExpression
     |   expression DIV expression   #divExpression
     |   expression SUB expression   #subExpression

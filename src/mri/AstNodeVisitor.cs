@@ -20,6 +20,12 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         return null;
     }
 
+    public override object? VisitInvokeFunction(ParserDefinition.InvokeFunctionContext context)
+    {
+        Console.WriteLine("hello");
+        return null;
+    }
+
     public override object? VisitAddExpression(ParserDefinition.AddExpressionContext context)
     {
         var leftExpr = Visit(context.expression(0));

@@ -38,6 +38,12 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitParse([NotNull] ParserDefinition.ParseContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.block"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBlock([NotNull] ParserDefinition.BlockContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="ParserDefinition.statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -62,17 +68,23 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.return_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReturn_type([NotNull] ParserDefinition.Return_typeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.func_def"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFunc_def([NotNull] ParserDefinition.Func_defContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="ParserDefinition.func_invoke"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFunc_invoke([NotNull] ParserDefinition.Func_invokeContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="ParserDefinition.arg_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitArg_list([NotNull] ParserDefinition.Arg_listContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
@@ -88,19 +100,19 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitAddExpression([NotNull] ParserDefinition.AddExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>funcInvoke</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFuncInvoke([NotNull] ParserDefinition.FuncInvokeContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>divExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDivExpression([NotNull] ParserDefinition.DivExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>invokeFunction</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInvokeFunction([NotNull] ParserDefinition.InvokeFunctionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>subExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.

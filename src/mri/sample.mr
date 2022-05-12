@@ -6,3 +6,9 @@ some_var = 435;
 str_mul = "hello abc" * "hello kmd";
 
 str_div = "abc" / "cde"
+
+@int hello () {
+    
+}
+
+invoke = get();
