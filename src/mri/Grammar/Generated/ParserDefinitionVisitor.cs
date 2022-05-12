@@ -56,24 +56,15 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitVar_declare([NotNull] ParserDefinition.Var_declareContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>stringExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Visit a parse tree produced by <see cref="ParserDefinition.constant"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitStringExpression([NotNull] ParserDefinition.StringExpressionContext context);
+	Result VisitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>intExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Visit a parse tree produced by <see cref="ParserDefinition.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitIntExpression([NotNull] ParserDefinition.IntExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>floatExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFloatExpression([NotNull] ParserDefinition.FloatExpressionContext context);
+	Result VisitExpression([NotNull] ParserDefinition.ExpressionContext context);
 }

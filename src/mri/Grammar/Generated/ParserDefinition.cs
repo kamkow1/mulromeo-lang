@@ -40,9 +40,9 @@ public partial class ParserDefinition : Parser {
 		POW=9, TERMINATOR=10, IDENTIFIER=11, WHITESPACE=12;
 	public const int
 		RULE_parse = 0, RULE_statement = 1, RULE_var_assign = 2, RULE_var_declare = 3, 
-		RULE_expression = 4;
+		RULE_constant = 4, RULE_expression = 5;
 	public static readonly string[] ruleNames = {
-		"parse", "statement", "var_assign", "var_declare", "expression"
+		"parse", "statement", "var_assign", "var_declare", "constant", "expression"
 	};
 
 	private static readonly string[] _LiteralNames = {
@@ -122,17 +122,17 @@ public partial class ParserDefinition : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 13;
+			State = 15;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==IDENTIFIER) {
 				{
 				{
-				State = 10;
+				State = 12;
 				statement();
 				}
 				}
-				State = 15;
+				State = 17;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -185,24 +185,24 @@ public partial class ParserDefinition : Parser {
 		StatementContext _localctx = new StatementContext(Context, State);
 		EnterRule(_localctx, 2, RULE_statement);
 		try {
-			State = 22;
+			State = 24;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,1,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 16;
+				State = 18;
 				var_assign();
-				State = 17;
+				State = 19;
 				Match(TERMINATOR);
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 19;
+				State = 21;
 				var_declare();
-				State = 20;
+				State = 22;
 				Match(TERMINATOR);
 				}
 				break;
@@ -255,11 +255,11 @@ public partial class ParserDefinition : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 24;
-			Match(IDENTIFIER);
-			State = 25;
-			Match(ASSIGN);
 			State = 26;
+			Match(IDENTIFIER);
+			State = 27;
+			Match(ASSIGN);
+			State = 28;
 			expression();
 			}
 		}
@@ -306,7 +306,7 @@ public partial class ParserDefinition : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 28;
+			State = 30;
 			Match(IDENTIFIER);
 			}
 		}
@@ -321,75 +321,86 @@ public partial class ParserDefinition : Parser {
 		return _localctx;
 	}
 
+	public partial class ConstantContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT_VAL() { return GetToken(ParserDefinition.INT_VAL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STR_VAL() { return GetToken(ParserDefinition.STR_VAL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLT_VAL() { return GetToken(ParserDefinition.FLT_VAL, 0); }
+		public ConstantContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_constant; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IParserDefinitionListener typedListener = listener as IParserDefinitionListener;
+			if (typedListener != null) typedListener.EnterConstant(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IParserDefinitionListener typedListener = listener as IParserDefinitionListener;
+			if (typedListener != null) typedListener.ExitConstant(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IParserDefinitionVisitor<TResult> typedVisitor = visitor as IParserDefinitionVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitConstant(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ConstantContext constant() {
+		ConstantContext _localctx = new ConstantContext(Context, State);
+		EnterRule(_localctx, 8, RULE_constant);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 32;
+			_la = TokenStream.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STR_VAL) | (1L << INT_VAL) | (1L << FLT_VAL))) != 0)) ) {
+			ErrorHandler.RecoverInline(this);
+			}
+			else {
+				ErrorHandler.ReportMatch(this);
+			    Consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
 	public partial class ExpressionContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ConstantContext constant() {
+			return GetRuleContext<ConstantContext>(0);
+		}
 		public ExpressionContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
 		public override int RuleIndex { get { return RULE_expression; } }
-	 
-		public ExpressionContext() { }
-		public virtual void CopyFrom(ExpressionContext context) {
-			base.CopyFrom(context);
-		}
-	}
-	public partial class StringExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STR_VAL() { return GetToken(ParserDefinition.STR_VAL, 0); }
-		public StringExpressionContext(ExpressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IParserDefinitionListener typedListener = listener as IParserDefinitionListener;
-			if (typedListener != null) typedListener.EnterStringExpression(this);
+			if (typedListener != null) typedListener.EnterExpression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IParserDefinitionListener typedListener = listener as IParserDefinitionListener;
-			if (typedListener != null) typedListener.ExitStringExpression(this);
+			if (typedListener != null) typedListener.ExitExpression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IParserDefinitionVisitor<TResult> typedVisitor = visitor as IParserDefinitionVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitStringExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class IntExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INT_VAL() { return GetToken(ParserDefinition.INT_VAL, 0); }
-		public IntExpressionContext(ExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IParserDefinitionListener typedListener = listener as IParserDefinitionListener;
-			if (typedListener != null) typedListener.EnterIntExpression(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IParserDefinitionListener typedListener = listener as IParserDefinitionListener;
-			if (typedListener != null) typedListener.ExitIntExpression(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IParserDefinitionVisitor<TResult> typedVisitor = visitor as IParserDefinitionVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitIntExpression(this);
-			else return visitor.VisitChildren(this);
-		}
-	}
-	public partial class FloatExpressionContext : ExpressionContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLT_VAL() { return GetToken(ParserDefinition.FLT_VAL, 0); }
-		public FloatExpressionContext(ExpressionContext context) { CopyFrom(context); }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IParserDefinitionListener typedListener = listener as IParserDefinitionListener;
-			if (typedListener != null) typedListener.EnterFloatExpression(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IParserDefinitionListener typedListener = listener as IParserDefinitionListener;
-			if (typedListener != null) typedListener.ExitFloatExpression(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IParserDefinitionVisitor<TResult> typedVisitor = visitor as IParserDefinitionVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitFloatExpression(this);
+			if (typedVisitor != null) return typedVisitor.VisitExpression(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -397,37 +408,12 @@ public partial class ParserDefinition : Parser {
 	[RuleVersion(0)]
 	public ExpressionContext expression() {
 		ExpressionContext _localctx = new ExpressionContext(Context, State);
-		EnterRule(_localctx, 8, RULE_expression);
+		EnterRule(_localctx, 10, RULE_expression);
 		try {
-			State = 33;
-			ErrorHandler.Sync(this);
-			switch (TokenStream.LA(1)) {
-			case STR_VAL:
-				_localctx = new StringExpressionContext(_localctx);
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 30;
-				Match(STR_VAL);
-				}
-				break;
-			case INT_VAL:
-				_localctx = new IntExpressionContext(_localctx);
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 31;
-				Match(INT_VAL);
-				}
-				break;
-			case FLT_VAL:
-				_localctx = new FloatExpressionContext(_localctx);
-				EnterOuterAlt(_localctx, 3);
-				{
-				State = 32;
-				Match(FLT_VAL);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 34;
+			constant();
 			}
 		}
 		catch (RecognitionException re) {
@@ -442,16 +428,16 @@ public partial class ParserDefinition : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,12,36,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,5,0,12,8,0,10,0,
-		12,0,15,9,0,1,1,1,1,1,1,1,1,1,1,1,1,3,1,23,8,1,1,2,1,2,1,2,1,2,1,3,1,3,
-		1,4,1,4,1,4,3,4,34,8,4,1,4,0,0,5,0,2,4,6,8,0,0,34,0,13,1,0,0,0,2,22,1,
-		0,0,0,4,24,1,0,0,0,6,28,1,0,0,0,8,33,1,0,0,0,10,12,3,2,1,0,11,10,1,0,0,
-		0,12,15,1,0,0,0,13,11,1,0,0,0,13,14,1,0,0,0,14,1,1,0,0,0,15,13,1,0,0,0,
-		16,17,3,4,2,0,17,18,5,10,0,0,18,23,1,0,0,0,19,20,3,6,3,0,20,21,5,10,0,
-		0,21,23,1,0,0,0,22,16,1,0,0,0,22,19,1,0,0,0,23,3,1,0,0,0,24,25,5,11,0,
-		0,25,26,5,4,0,0,26,27,3,8,4,0,27,5,1,0,0,0,28,29,5,11,0,0,29,7,1,0,0,0,
-		30,34,5,1,0,0,31,34,5,2,0,0,32,34,5,3,0,0,33,30,1,0,0,0,33,31,1,0,0,0,
-		33,32,1,0,0,0,34,9,1,0,0,0,3,13,22,33
+		4,1,12,37,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,5,0,14,8,
+		0,10,0,12,0,17,9,0,1,1,1,1,1,1,1,1,1,1,1,1,3,1,25,8,1,1,2,1,2,1,2,1,2,
+		1,3,1,3,1,4,1,4,1,5,1,5,1,5,0,0,6,0,2,4,6,8,10,0,1,1,0,1,3,32,0,15,1,0,
+		0,0,2,24,1,0,0,0,4,26,1,0,0,0,6,30,1,0,0,0,8,32,1,0,0,0,10,34,1,0,0,0,
+		12,14,3,2,1,0,13,12,1,0,0,0,14,17,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,
+		16,1,1,0,0,0,17,15,1,0,0,0,18,19,3,4,2,0,19,20,5,10,0,0,20,25,1,0,0,0,
+		21,22,3,6,3,0,22,23,5,10,0,0,23,25,1,0,0,0,24,18,1,0,0,0,24,21,1,0,0,0,
+		25,3,1,0,0,0,26,27,5,11,0,0,27,28,5,4,0,0,28,29,3,10,5,0,29,5,1,0,0,0,
+		30,31,5,11,0,0,31,7,1,0,0,0,32,33,7,0,0,0,33,9,1,0,0,0,34,35,3,8,4,0,35,
+		11,1,0,0,0,2,15,24
 	};
 
 	public static readonly ATN _ATN =

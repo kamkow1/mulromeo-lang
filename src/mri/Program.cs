@@ -1,4 +1,7 @@
-﻿using Antlr4.Runtime;
+﻿using System;
+using System.IO;
+using Antlr4.Runtime;
+using mri;
 
 var filePath = Environment.GetCommandLineArgs()[1];
 var fileContent = File.ReadAllText(filePath);
@@ -9,6 +12,6 @@ var commonTokenStream = new CommonTokenStream(lexer);
 var parser = new ParserDefinition(commonTokenStream);
 
 var parseContext = parser.parse();
-//var visitor = new KongoVisitor();
+var visitor = new AstNodeVisitor();
 
-//visitor.Visit(parseContext);
+visitor.Visit(parseContext);

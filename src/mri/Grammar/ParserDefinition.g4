@@ -17,9 +17,11 @@ var_assign:
 var_declare:
         IDENTIFIER;
         
-
+constant:
+        INT_VAL
+    |   STR_VAL
+    |   FLT_VAL;
         
 expression:
-        STR_VAL                 #stringExpression
-    |   INT_VAL                 #intExpression
-    |   FLT_VAL                 #floatExpression;
+        constant;
+        

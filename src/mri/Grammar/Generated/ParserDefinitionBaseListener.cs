@@ -84,47 +84,29 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitVar_declare([NotNull] ParserDefinition.Var_declareContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>stringExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Enter a parse tree produced by <see cref="ParserDefinition.constant"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStringExpression([NotNull] ParserDefinition.StringExpressionContext context) { }
+	public virtual void EnterConstant([NotNull] ParserDefinition.ConstantContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>stringExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Exit a parse tree produced by <see cref="ParserDefinition.constant"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStringExpression([NotNull] ParserDefinition.StringExpressionContext context) { }
+	public virtual void ExitConstant([NotNull] ParserDefinition.ConstantContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>intExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Enter a parse tree produced by <see cref="ParserDefinition.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterIntExpression([NotNull] ParserDefinition.IntExpressionContext context) { }
+	public virtual void EnterExpression([NotNull] ParserDefinition.ExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>intExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Exit a parse tree produced by <see cref="ParserDefinition.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitIntExpression([NotNull] ParserDefinition.IntExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>floatExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFloatExpression([NotNull] ParserDefinition.FloatExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>floatExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFloatExpression([NotNull] ParserDefinition.FloatExpressionContext context) { }
+	public virtual void ExitExpression([NotNull] ParserDefinition.ExpressionContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

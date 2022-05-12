@@ -71,39 +71,23 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitVar_declare([NotNull] ParserDefinition.Var_declareContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>stringExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Enter a parse tree produced by <see cref="ParserDefinition.constant"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterStringExpression([NotNull] ParserDefinition.StringExpressionContext context);
+	void EnterConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>stringExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Exit a parse tree produced by <see cref="ParserDefinition.constant"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitStringExpression([NotNull] ParserDefinition.StringExpressionContext context);
+	void ExitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>intExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Enter a parse tree produced by <see cref="ParserDefinition.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterIntExpression([NotNull] ParserDefinition.IntExpressionContext context);
+	void EnterExpression([NotNull] ParserDefinition.ExpressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>intExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Exit a parse tree produced by <see cref="ParserDefinition.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitIntExpression([NotNull] ParserDefinition.IntExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>floatExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterFloatExpression([NotNull] ParserDefinition.FloatExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>floatExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitFloatExpression([NotNull] ParserDefinition.FloatExpressionContext context);
+	void ExitExpression([NotNull] ParserDefinition.ExpressionContext context);
 }

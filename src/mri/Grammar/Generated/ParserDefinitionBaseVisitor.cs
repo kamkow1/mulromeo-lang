@@ -75,8 +75,7 @@ public partial class ParserDefinitionBaseVisitor<Result> : AbstractParseTreeVisi
 	/// <return>The visitor result.</return>
 	public virtual Result VisitVar_declare([NotNull] ParserDefinition.Var_declareContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>stringExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Visit a parse tree produced by <see cref="ParserDefinition.constant"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -84,10 +83,9 @@ public partial class ParserDefinitionBaseVisitor<Result> : AbstractParseTreeVisi
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStringExpression([NotNull] ParserDefinition.StringExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitConstant([NotNull] ParserDefinition.ConstantContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>intExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// Visit a parse tree produced by <see cref="ParserDefinition.expression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -95,16 +93,5 @@ public partial class ParserDefinitionBaseVisitor<Result> : AbstractParseTreeVisi
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitIntExpression([NotNull] ParserDefinition.IntExpressionContext context) { return VisitChildren(context); }
-	/// <summary>
-	/// Visit a parse tree produced by the <c>floatExpression</c>
-	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitFloatExpression([NotNull] ParserDefinition.FloatExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitExpression([NotNull] ParserDefinition.ExpressionContext context) { return VisitChildren(context); }
 }
