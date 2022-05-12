@@ -1,0 +1,6 @@
+src/mri/bin/
+src/mri/obj
+
+src/mri/.idea
+src/mri/.vs
+src/mri/.vscode
