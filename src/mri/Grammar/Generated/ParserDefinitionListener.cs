@@ -81,13 +81,63 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="ParserDefinition.expression"/>.
+	/// Enter a parse tree produced by the <c>constantExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterExpression([NotNull] ParserDefinition.ExpressionContext context);
+	void EnterConstantExpression([NotNull] ParserDefinition.ConstantExpressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="ParserDefinition.expression"/>.
+	/// Exit a parse tree produced by the <c>constantExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitExpression([NotNull] ParserDefinition.ExpressionContext context);
+	void ExitConstantExpression([NotNull] ParserDefinition.ConstantExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>addExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAddExpression([NotNull] ParserDefinition.AddExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>addExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAddExpression([NotNull] ParserDefinition.AddExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>divExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDivExpression([NotNull] ParserDefinition.DivExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>divExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDivExpression([NotNull] ParserDefinition.DivExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>subExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSubExpression([NotNull] ParserDefinition.SubExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>subExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSubExpression([NotNull] ParserDefinition.SubExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>mulExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMulExpression([NotNull] ParserDefinition.MulExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>mulExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMulExpression([NotNull] ParserDefinition.MulExpressionContext context);
 }

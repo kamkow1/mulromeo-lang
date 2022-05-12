@@ -62,9 +62,38 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="ParserDefinition.expression"/>.
+	/// Visit a parse tree produced by the <c>constantExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitExpression([NotNull] ParserDefinition.ExpressionContext context);
+	Result VisitConstantExpression([NotNull] ParserDefinition.ConstantExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>addExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAddExpression([NotNull] ParserDefinition.AddExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>divExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDivExpression([NotNull] ParserDefinition.DivExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>subExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSubExpression([NotNull] ParserDefinition.SubExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>mulExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMulExpression([NotNull] ParserDefinition.MulExpressionContext context);
 }

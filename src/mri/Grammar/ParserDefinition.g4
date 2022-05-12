@@ -23,5 +23,9 @@ constant:
     |   FLT_VAL;
         
 expression:
-        constant;
+        constant                    #constantExpression
+    |   expression ADD expression   #addExpression
+    |   expression DIV expression   #divExpression
+    |   expression SUB expression   #subExpression
+    |   expression MUL expression   #mulExpression;
         

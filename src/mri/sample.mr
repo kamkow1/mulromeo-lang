@@ -1,2 +1,6 @@
 ﻿some_var = 5;
 other_var = "3544";
+
+some_var = 435;
+
+str_mul = "hello abc" * "hello kmd";
