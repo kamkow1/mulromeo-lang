@@ -87,7 +87,13 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
     {
         var leftExpr = Visit(context.expression(0));
         var rightExpr = Visit(context.expression(1));
-        
+
+        if (leftExpr.GetType() == typeof(string) && rightExpr.GetType() == typeof(string))
+        {
+            var difference = leftExpr.ToString().Except(rightExpr.ToString());
+            return string.Concat(difference.Where(c => difference.Contains(c)));
+        }
+
         if ((leftExpr is int || rightExpr is int) ||
             (leftExpr is float || rightExpr is int) ||
             (leftExpr is int || rightExpr is float) ||
