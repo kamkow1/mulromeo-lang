@@ -8,3 +8,7 @@ str_mul = "hello abc" * "hello kmd";
 str_div = "abc" / "cde";
 
 print("hi");
+
+res = get_img("https://picsum.photos/200/300");
+
+print(res);

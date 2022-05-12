@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text;
 using Newtonsoft.Json;
 
 namespace mri;
@@ -13,16 +14,26 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         _variables["print"] = new Func<object?[], object?>(Print);
     }
 
-    private object? Print(object? text)
+    private object? Print(object?[] inputs)
     {
-        Console.WriteLine(text);
+        foreach (var input  in inputs)
+        {
+            Console.WriteLine(_variables.ContainsKey(input as string)
+                ? JsonConvert.SerializeObject(_variables[input as string], Formatting.Indented)
+                : JsonConvert.SerializeObject(input, Formatting.Indented));
+        }
+            
         return null;
     }
 
-    private object GetImg(object? url)
+    private object? GetImg(object? url)
     {
         using var client = new WebClient();
-        var file = client.DownloadData(url.ToString());
+        var file = client.DownloadData(JsonConvert.SerializeObject(url)
+                                                    .Replace("[", "")
+                                                    .Replace("]", "")
+                                                    .Replace("\"", "")
+        );
         return file;
     }
 
@@ -42,13 +53,11 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
     {
         var name = context.IDENTIFIER().GetText();
         var args = context.expression().Select(Visit).ToArray();
-        
-        Console.WriteLine(name);
 
         if (!_variables.ContainsKey(name))
             throw new Exception($"{name} is not defined");
 
-        var func = (Func<object?[], object?>)_variables[name];
+        var func = (Func<dynamic[], dynamic>)_variables[name]!;
         
         return func(args);
     }
@@ -148,5 +157,10 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
             return stringVal.GetText()[1..^1];
         
         return new NotImplementedException("unknown value type");
+    }
+
+    public override object? VisitIdentifierExpression(ParserDefinition.IdentifierExpressionContext context)
+    {
+        return context.IDENTIFIER().GetText();
     }
 }
