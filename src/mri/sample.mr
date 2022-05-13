@@ -1,7 +1,0 @@
-﻿loop 0 | 3 -> i {
-    res = get_img("https://picsum.photos/200/300");
-    name = "res_" + &i;
-    full_name = &name + ".png";
-    print(&full_name);
-    save(&full_name, &res);
-}
