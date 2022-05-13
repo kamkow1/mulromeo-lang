@@ -40,4 +40,7 @@ ARROW               : '->';
 AMP                 : '&';
 
 IDENTIFIER          : [a-zA-Z_] [a-zA-Z_0-9]*;
-WHITESPACE          : [ \r\n\t]+ -> skip;
+WHITESPACE          : [ \r\n\t]+    -> skip;
+COMMENT             : '#*' .*? '*#' -> skip;
+
+LINE_COMMENT        : '#' ~[\r\n]* -> skip;
