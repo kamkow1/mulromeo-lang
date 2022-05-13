@@ -34,7 +34,7 @@ html_output_type:
     |   IMAGE;
   
 add_element:
-        OUTPUT_HTML html_output_type expression;
+        OUTPUT_HTML html_output_type (expression (',' expression)*)?;
     
 range_loop:
     LOOP expression PIPE expression ARROW IDENTIFIER LBRACE block RBRACE;

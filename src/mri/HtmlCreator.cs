@@ -30,9 +30,14 @@ public class HtmlCreator
     
     public string Make() => _template.OuterXml;
 
-    public void AddImgElement(string src)
+    public void AddImgElement(string src, int width, int height)
     {
         var mediaDiv =_template.SelectSingleNode("/html/body/div[@id='media']");
-        mediaDiv.InnerXml += $"<img src='{src}' id='{Guid.NewGuid()}' />";
+        mediaDiv.InnerXml += @$"
+        <img src='{src}' 
+            id='{Guid.NewGuid()}' 
+            width='{width}' 
+            height='{height}' 
+        />";
     }
 }

@@ -247,14 +247,16 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 
     public override object? VisitAdd_element(ParserDefinition.Add_elementContext context)
     {
-        var type = Visit(context.html_output_type()) as string;
-        var src = Visit(context.expression()) as string;
+        var type    = Visit(context.html_output_type())     as string;
+        var src     = Visit(context.expression(0))         as string;
+        var width   = Visit(context.expression(1))         as int?;
+        var height  = Visit(context.expression(2))         as int?;
 
         switch (type)
         {
             case "image":
             {
-                _htmlCreator.AddImgElement(src);
+                _htmlCreator.AddImgElement(src, width.Value, height.Value);
                 return null;
             }
 
