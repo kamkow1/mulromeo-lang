@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using mri.HtmlGenerators;
 using Newtonsoft.Json;
 
 namespace mri;
@@ -221,6 +220,8 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 
     public override object? VisitReference(ParserDefinition.ReferenceContext context)
     {
-        return _variables[context.IDENTIFIER().GetText()];
+        if (_variables.TryGetValue(context.IDENTIFIER().GetText(), out var result))
+            return result;
+        throw new Exception($"{context.IDENTIFIER().GetText()} does not exist");
     }
 }
