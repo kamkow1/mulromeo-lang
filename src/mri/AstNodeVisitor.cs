@@ -1,4 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
 using mri.HtmlGenerators;
 using Newtonsoft.Json;
 
@@ -16,38 +20,20 @@ namespace mri;
 public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 {
     private readonly Dictionary<string, object?> _variables = new();
-    private readonly Dictionary<string, Image> _images = new();
 
     public AstNodeVisitor()
     {
         _variables["get_img"]   = new Func<object?[], object?>(GetImg);
         _variables["print"]     = new Func<object?[], object?>(Print);
         _variables["save"]      = new Func<object?[], object?>(Save);
-        _variables["write_img"] = new Func<object?[], object?>(WriteImg);
     }
 
     private object? Save(object?[] args)
     {
         var path = args[0] as string;
-        var content = _variables[args[1] as string] as byte[];
+        var content = args[1] as byte[];
 
-        var image = new ImageBuilder()
-            .SetPath(path)
-            .SetName(Path.GetFileName(path))
-            .SetContent(content)
-            .Build();
-        
-        _images.Add(Path.GetFileName(path).Split('.')[0], image);
-        Console.WriteLine(JsonConvert.SerializeObject(_images, Formatting.Indented));
-        //File.WriteAllBytes(path as string, content as byte[]);
-        return null;
-    }
-
-    private object? WriteImg(object?[] args)
-    {
-        var name = args[0] as string;
-        var image = _images[name];
-        File.WriteAllBytes(image.Path, image.Content);
+        File.WriteAllBytes(path, content);
         return null;
     }
 
@@ -103,7 +89,7 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
     {
         var leftExpr = Visit(context.expression(0));
         var rightExpr = Visit(context.expression(1));
-        
+
         if (leftExpr.GetType() == typeof(string) || rightExpr.GetType() == typeof(string))
             return $"{leftExpr}{rightExpr}";
 
@@ -199,5 +185,42 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
     public override object? VisitIdentifierExpression(ParserDefinition.IdentifierExpressionContext context)
     {
         return context.IDENTIFIER().GetText();
+    }
+
+    public override object? VisitBlock(ParserDefinition.BlockContext context)
+    {
+        foreach (var statement in context.statement())
+            Visit(statement);
+
+        return null;
+    }
+
+    public override object? VisitRange_loop(ParserDefinition.Range_loopContext context)
+    {
+        var left = Visit(context.expression(0))       as int?;
+        var right = Visit(context.expression(1))      as int?;
+        var iter = context.IDENTIFIER().GetText();
+        Console.WriteLine(iter);
+
+        if (left is null || right is null)
+            throw new Exception("loop expressions cannot be null");
+        
+        _variables.Add(iter, 0);
+
+        var count = right - left;
+
+        for (var i = 0; i < count; i++)
+        {
+            _variables[iter] = (int)_variables[iter] + 1;
+            Visit(context.block());
+        }
+            
+
+        return null;
+    }
+
+    public override object? VisitReference(ParserDefinition.ReferenceContext context)
+    {
+        return _variables[context.IDENTIFIER().GetText()];
     }
 }

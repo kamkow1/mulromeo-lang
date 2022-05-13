@@ -6,6 +6,7 @@ options {
 
 FUNC                : 'func';
 DECLARE             : 'declare';
+LOOP                : 'loop';
 
 // values
 STR_VAL             : '"' (~[\\"\r\n])* '"';
@@ -34,7 +35,9 @@ LPAREN              : '(';
 RPAREN              : ')';
 LBRACE              : '{';
 RBRACE              : '}';
-AT                  : '@';
+PIPE                : '|';
+ARROW               : '->';
+AMP                 : '&';
 
 IDENTIFIER          : [a-zA-Z_] [a-zA-Z_0-9]*;
 WHITESPACE          : [ \r\n\t]+ -> skip;

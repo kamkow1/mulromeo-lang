@@ -68,6 +68,12 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.range_loop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRange_loop([NotNull] ParserDefinition.Range_loopContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="ParserDefinition.return_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -86,6 +92,12 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFunc_invoke([NotNull] ParserDefinition.Func_invokeContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.reference"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReference([NotNull] ParserDefinition.ReferenceContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
@@ -99,6 +111,13 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAddExpression([NotNull] ParserDefinition.AddExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>referenceExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReferenceExpression([NotNull] ParserDefinition.ReferenceExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>identifierExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.

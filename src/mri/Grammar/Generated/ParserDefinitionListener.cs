@@ -91,6 +91,16 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.range_loop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRange_loop([NotNull] ParserDefinition.Range_loopContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.range_loop"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRange_loop([NotNull] ParserDefinition.Range_loopContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ParserDefinition.return_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -121,6 +131,16 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFunc_invoke([NotNull] ParserDefinition.Func_invokeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.reference"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterReference([NotNull] ParserDefinition.ReferenceContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.reference"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitReference([NotNull] ParserDefinition.ReferenceContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
@@ -144,6 +164,18 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitAddExpression([NotNull] ParserDefinition.AddExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>referenceExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterReferenceExpression([NotNull] ParserDefinition.ReferenceExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>referenceExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitReferenceExpression([NotNull] ParserDefinition.ReferenceExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>identifierExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.

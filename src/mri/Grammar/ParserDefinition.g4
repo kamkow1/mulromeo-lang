@@ -13,7 +13,8 @@ statement:
         var_assign              TERMINATOR
     |   var_declare             TERMINATOR
     |   expression              TERMINATOR
-    |   func_def;
+    |   func_def
+    |   range_loop;
     
 var_assign:
         IDENTIFIER ASSIGN expression;
@@ -26,6 +27,9 @@ constant:
     |   STR_VAL
     |   FLT_VAL;
     
+range_loop:
+    LOOP expression PIPE expression ARROW IDENTIFIER LBRACE block RBRACE;
+    
 return_type:
     |   VOID
     |   INT
@@ -37,10 +41,14 @@ func_def:
 
 func_invoke:
         IDENTIFIER LPAREN (expression (',' expression)*)? RPAREN;
-        
+    
+reference:
+        AMP IDENTIFIER;  
+      
 expression:
         constant                    #constantExpression
-    |   IDENTIFIER                #identifierExpression
+    |   IDENTIFIER                  #identifierExpression
+    |   reference                   #referenceExpression
     |   func_invoke                 #invokeFunction
     |   expression ADD expression   #addExpression
     |   expression DIV expression   #divExpression

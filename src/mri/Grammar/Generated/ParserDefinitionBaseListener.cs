@@ -108,6 +108,18 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitConstant([NotNull] ParserDefinition.ConstantContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.range_loop"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRange_loop([NotNull] ParserDefinition.Range_loopContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.range_loop"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRange_loop([NotNull] ParserDefinition.Range_loopContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ParserDefinition.return_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -144,6 +156,18 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFunc_invoke([NotNull] ParserDefinition.Func_invokeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.reference"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReference([NotNull] ParserDefinition.ReferenceContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.reference"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReference([NotNull] ParserDefinition.ReferenceContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -171,6 +195,20 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAddExpression([NotNull] ParserDefinition.AddExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>referenceExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReferenceExpression([NotNull] ParserDefinition.ReferenceExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>referenceExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReferenceExpression([NotNull] ParserDefinition.ReferenceExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>identifierExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
