@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using mri;
 
 var filePath = Environment.GetCommandLineArgs()[1];
