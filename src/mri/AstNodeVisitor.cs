@@ -25,6 +25,13 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         _variables["get_img"]   = new Func<object?[], object?>(GetImg);
         _variables["print"]     = new Func<object?[], object?>(Print);
         _variables["save"]      = new Func<object?[], object?>(Save);
+        _variables["mkdir"]     = new Func<object?[], object?>(MkDir);
+    }
+
+    private object? MkDir(object?[] args)
+    {
+        Directory.CreateDirectory(args[0] as string);
+        return null;
     }
 
     private object? Save(object?[] args)

@@ -40,7 +40,7 @@ func_def:
         FUNC return_type IDENTIFIER LPAREN (IDENTIFIER (',' IDENTIFIER)*)? RPAREN LBRACE block RBRACE;
 
 func_invoke:
-        IDENTIFIER LPAREN (expression (',' expression)*)? RPAREN;
+        IDENTIFIER (expression (',' expression)*)?;
     
 reference:
         AMP IDENTIFIER;  
