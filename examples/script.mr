@@ -1,0 +1,22 @@
+# define folder paths
+workdir = "your path";
+assets = &workdir + "assets/";
+images = &assets + "img/";
+
+# make dirs
+mkdir &assets;
+mkdir &images;
+
+loop 0 | 3 -> i {
+    res = get_img "https://picsum.photos/200/300";
+    name = "res_" + &i;
+    full_name = &name + ".png";
+    full_path = &images + &full_name;
+    save &full_path, &res;
+
+    print &full_path;
+
+    $> image &full_path;
+}
+
+mkindex &workdir;
