@@ -1,6 +1,6 @@
 ﻿namespace mri.HtmlGenerators;
 
-public class IndexGenerator
+public class IndexBuilder
 {
     private string _template = @"
     <!DOCTYPE html>

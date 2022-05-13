@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using mri.HtmlGenerators;
 using Newtonsoft.Json;
 
 namespace mri;
@@ -26,6 +27,15 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         _variables["print"]     = new Func<object?[], object?>(Print);
         _variables["save"]      = new Func<object?[], object?>(Save);
         _variables["mkdir"]     = new Func<object?[], object?>(MkDir);
+        _variables["mkindex"]   = new Func<object?[], object?>(MkIndex);
+    }
+
+    private object? MkIndex(object?[] args)
+    {
+        var path = args[0] as string + "/index.html";
+        var index = new IndexBuilder().Build();
+        File.WriteAllText(path, index);
+        return null;
     }
 
     private object? MkDir(object?[] args)
