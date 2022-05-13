@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using mri.HtmlGenerators;
 using Newtonsoft.Json;
 
 namespace mri;
@@ -15,20 +16,38 @@ namespace mri;
 public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 {
     private readonly Dictionary<string, object?> _variables = new();
+    private readonly Dictionary<string, Image> _images = new();
 
     public AstNodeVisitor()
     {
         _variables["get_img"]   = new Func<object?[], object?>(GetImg);
         _variables["print"]     = new Func<object?[], object?>(Print);
-        _variables["save"] = new Func<object?[], object?>(Save);
+        _variables["save"]      = new Func<object?[], object?>(Save);
+        _variables["write_img"] = new Func<object?[], object?>(WriteImg);
     }
 
-    private object? Save(object?[] data)
+    private object? Save(object?[] args)
     {
-        var path = data[0];
-        var content = _variables[data[1] as string];
+        var path = args[0] as string;
+        var content = _variables[args[1] as string] as byte[];
+
+        var image = new ImageBuilder()
+            .SetPath(path)
+            .SetName(Path.GetFileName(path))
+            .SetContent(content)
+            .Build();
         
-        File.WriteAllBytes(path as string, content as byte[]);
+        _images.Add(Path.GetFileName(path).Split('.')[0], image);
+        Console.WriteLine(JsonConvert.SerializeObject(_images, Formatting.Indented));
+        //File.WriteAllBytes(path as string, content as byte[]);
+        return null;
+    }
+
+    private object? WriteImg(object?[] args)
+    {
+        var name = args[0] as string;
+        var image = _images[name];
+        File.WriteAllBytes(image.Path, image.Content);
         return null;
     }
 
