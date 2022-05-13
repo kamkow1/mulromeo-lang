@@ -33,6 +33,6 @@ public class IndexCreator
     public void AddImgElement(string src)
     {
         var mediaDiv =_template.SelectSingleNode("/html/body/div[@id='media']");
-        mediaDiv.InnerXml = $"<img src=\"{src}\" />";
+        mediaDiv.InnerXml += $"<img src='{src}' id='{Guid.NewGuid()}' />";
     }
 }
