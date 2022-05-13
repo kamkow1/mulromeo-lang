@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using Newtonsoft.Json;
 
 namespace mri;
@@ -210,7 +206,6 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         var left = Visit(context.expression(0))       as int?;
         var right = Visit(context.expression(1))      as int?;
         var iter = context.IDENTIFIER().GetText();
-        Console.WriteLine(iter);
 
         if (left is null || right is null)
             throw new Exception("loop expressions cannot be null");
