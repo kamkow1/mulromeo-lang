@@ -3,38 +3,31 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using mri.HtmlGenerators;
 using Newtonsoft.Json;
 
 namespace mri;
 
-/*
- * build-in functions   : 21
- * var_assign           : 54
- * func_invoke          : 67
- * math expressions     : 81-162
- * constant             : 165
-* identifier            : 179
- */
-
 public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 {
     private readonly Dictionary<string, object?> _variables = new();
-    private readonly IndexCreator _indexCreator = new();
+    private readonly HtmlCreator _htmlCreator = new();
 
-    public AstNodeVisitor()
+    public AstNodeVisitor(string filePath, string fileDir)
     {
+        _variables["__file_path__"] = filePath;
+        _variables["__file_dir__"] = fileDir; 
+        
         _variables["get_img"]   = new Func<object?[], object?>(GetImg);
         _variables["print"]     = new Func<object?[], object?>(Print);
         _variables["save"]      = new Func<object?[], object?>(Save);
         _variables["mkdir"]     = new Func<object?[], object?>(MkDir);
-        _variables["mkindex"]   = new Func<object?[], object?>(MkIndex);
+        _variables["mkhtml"]    = new Func<object?[], object?>(MkHtml);
     }
 
-    private object? MkIndex(object?[] args)
+    private object? MkHtml(object?[] args)
     {
-        var path = args[0] as string + "/index.html";
-        var index = _indexCreator.Make();
+        var path = args[0] as string + $"/{args[1] as string}.html";
+        var index = _htmlCreator.Make();
         File.WriteAllText(path, index);
         return null;
     }
@@ -266,9 +259,14 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         {
             case "image":
             {
-                _indexCreator.AddImgElement(src);
+                _htmlCreator.AddImgElement(src);
                 return null;
             }
+
+            /*case "audio":
+            {
+                _htmlCreator.AddAudioElement(src);
+            }*/
             default: throw new Exception("unimplemented");
         }
     }

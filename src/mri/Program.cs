@@ -12,6 +12,6 @@ var commonTokenStream = new CommonTokenStream(lexer);
 var parser = new ParserDefinition(commonTokenStream);
 
 var parseContext = parser.parse();
-var visitor = new AstNodeVisitor();
+var visitor = new AstNodeVisitor(Path.GetFullPath(filePath), Path.GetDirectoryName(filePath));
 
 visitor.Visit(parseContext);

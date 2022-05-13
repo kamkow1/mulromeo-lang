@@ -2,13 +2,13 @@
 using System.Xml;
 using System.Xml.Linq;
 
-namespace mri.HtmlGenerators;
+namespace mri;
 
-public class IndexCreator
+public class HtmlCreator
 {
     private static XmlDocument _template = new();
 
-    public IndexCreator()
+    public HtmlCreator()
     {
         _template.LoadXml(@$"
         <html lang='en'>
