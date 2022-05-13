@@ -144,6 +144,18 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitRange_loop([NotNull] ParserDefinition.Range_loopContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.flush_memory"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFlush_memory([NotNull] ParserDefinition.Flush_memoryContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.flush_memory"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFlush_memory([NotNull] ParserDefinition.Flush_memoryContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ParserDefinition.return_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

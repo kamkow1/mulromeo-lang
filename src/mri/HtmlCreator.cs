@@ -20,8 +20,8 @@ public class HtmlCreator
             <link rel='stylesheet' href='style.css' />
         </head>
         <body>
-            <div id='media'>
-            </div>
+            <div id='images'><ul></ul></div>
+            <div id='audios'><ul></ul></div>
             <script src='index.js'></script>
         </body>
         </html>
@@ -32,12 +32,25 @@ public class HtmlCreator
 
     public void AddImgElement(string src, int width, int height)
     {
-        var mediaDiv =_template.SelectSingleNode("/html/body/div[@id='media']");
-        mediaDiv.InnerXml += @$"
-        <img src='{src}' 
-            id='{Guid.NewGuid()}' 
-            width='{width}' 
-            height='{height}' 
-        />";
+        var imageList = _template.SelectSingleNode("/html/body/div[@id='images']/ul");
+        imageList.InnerXml += @$"
+        <li>
+            <img src='{src}' 
+                id='{Guid.NewGuid()}' 
+                width='{width}' 
+                height='{height}' 
+            />
+        </li>";
+    }
+
+    public void AddAudioElement(string src, int width, int height)
+    {
+        var audioList = _template.SelectSingleNode("/html/body/div[@id='audios']/ul");
+        audioList.InnerXml += $@"
+        <li>
+            <audio controls='true' style='width: {width}; height: {height}'>
+                <source src='{src}' type='audio/mpeg' />
+            </audio>
+        </li>";
     }
 }

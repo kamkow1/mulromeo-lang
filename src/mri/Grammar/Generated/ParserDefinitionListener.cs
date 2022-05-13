@@ -121,6 +121,16 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitRange_loop([NotNull] ParserDefinition.Range_loopContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.flush_memory"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFlush_memory([NotNull] ParserDefinition.Flush_memoryContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.flush_memory"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFlush_memory([NotNull] ParserDefinition.Flush_memoryContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ParserDefinition.return_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

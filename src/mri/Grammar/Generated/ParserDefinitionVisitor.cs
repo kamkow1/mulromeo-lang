@@ -86,6 +86,12 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitRange_loop([NotNull] ParserDefinition.Range_loopContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.flush_memory"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFlush_memory([NotNull] ParserDefinition.Flush_memoryContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="ParserDefinition.return_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

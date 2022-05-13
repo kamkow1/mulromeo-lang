@@ -14,8 +14,9 @@ statement:
     |   var_declare             TERMINATOR
     |   expression              TERMINATOR
     |   add_element             TERMINATOR
+    |   flush_memory            TERMINATOR
     |   func_def
-    |   range_loop;
+    |   range_loop              TERMINATOR;
     
 var_assign:
         IDENTIFIER ASSIGN expression;
@@ -37,7 +38,10 @@ add_element:
         OUTPUT_HTML html_output_type (expression (',' expression)*)?;
     
 range_loop:
-    LOOP expression PIPE expression ARROW IDENTIFIER LBRACE block RBRACE;
+        LOOP expression PIPE expression ARROW IDENTIFIER LBRACE block RBRACE;
+    
+flush_memory:
+        AT FLUSH LSQBR (expression (',' expression)*)? RSQBR;
     
 return_type:
     |   VOID

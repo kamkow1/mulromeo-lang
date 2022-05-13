@@ -7,6 +7,7 @@ options {
 FUNC                : 'func';
 DECLARE             : 'declare';
 LOOP                : 'loop';
+FLUSH               : 'flush!';
 
 // values
 STR_VAL             : '"' (~[\\"\r\n])* '"';
@@ -44,6 +45,9 @@ PIPE                : '|';
 ARROW               : '->';
 AMP                 : '&';
 OUTPUT_HTML         : '$>';
+AT                  : '@';
+LSQBR               : '[';
+RSQBR               : ']';
 
 IDENTIFIER          : [a-zA-Z_] [a-zA-Z_0-9]*;
 WHITESPACE          : [ \r\n\t]+    -> skip;

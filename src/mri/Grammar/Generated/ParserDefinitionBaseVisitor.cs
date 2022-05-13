@@ -125,6 +125,16 @@ public partial class ParserDefinitionBaseVisitor<Result> : AbstractParseTreeVisi
 	/// <return>The visitor result.</return>
 	public virtual Result VisitRange_loop([NotNull] ParserDefinition.Range_loopContext context) { return VisitChildren(context); }
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.flush_memory"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitFlush_memory([NotNull] ParserDefinition.Flush_memoryContext context) { return VisitChildren(context); }
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="ParserDefinition.return_type"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>

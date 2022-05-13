@@ -10,8 +10,8 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 
     public AstNodeVisitor(string filePath, string fileDir)
     {
-        _variables["__file_path__"] = filePath;
-        _variables["__file_dir__"] = fileDir; 
+        _variables["__file_path__"] = filePath + "/";
+        _variables["__file_dir__"] = fileDir + "/"; 
         
         _variables["get_img"]   = new Func<object?[], object?>(GetImg);
         _variables["print"]     = new Func<object?[], object?>(Print);
@@ -43,13 +43,13 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         return null;
     }
 
-    private object? Print(object?[] inputs)
+    private object? Print(object?[] args)
     {
-        foreach (var input  in inputs)
+        foreach (var arg in args)
         {
-            Console.WriteLine(_variables.ContainsKey(input as string)
-                ? JsonConvert.SerializeObject(_variables[input as string], Formatting.Indented)
-                : JsonConvert.SerializeObject(input, Formatting.Indented));
+            Console.WriteLine(_variables.ContainsKey(arg as string ?? "")
+                ? JsonConvert.SerializeObject(_variables[arg as string], Formatting.Indented)
+                : JsonConvert.SerializeObject(arg, Formatting.Indented));
         }
             
         return null;
@@ -260,11 +260,27 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
                 return null;
             }
 
-            /*case "audio":
+            case "audio":
             {
-                _htmlCreator.AddAudioElement(src);
-            }*/
+                _htmlCreator.AddAudioElement(src, width.Value, height.Value);
+                return null;
+            }
+            
             default: throw new Exception("unimplemented");
         }
+    }
+
+    public override object? VisitFlush_memory(ParserDefinition.Flush_memoryContext context)
+    {
+        var args = context.expression().Select(Visit).ToArray();
+
+        foreach (var arg in args)
+        {
+            if (!_variables.ContainsKey(arg as string))
+                throw new Exception($"cannot flush {arg} because {arg} does not exist");
+            _variables.Remove(arg as string);
+        }
+
+        return null;
     }
 }
