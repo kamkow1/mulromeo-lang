@@ -3,6 +3,15 @@ using Newtonsoft.Json;
 
 namespace mri;
 
+/*
+ * build-in functions   : 21
+ * var_assign           : 54
+ * func_invoke          : 67
+ * math expressions     : 81-162
+ * constant             : 165
+* identifier            : 179
+ */
+
 public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 {
     private readonly Dictionary<string, object?> _variables = new();
