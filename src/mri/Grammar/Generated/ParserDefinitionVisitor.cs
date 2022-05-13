@@ -68,6 +68,18 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.html_output_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHtml_output_type([NotNull] ParserDefinition.Html_output_typeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.add_element"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAdd_element([NotNull] ParserDefinition.Add_elementContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="ParserDefinition.range_loop"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

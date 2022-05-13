@@ -13,6 +13,7 @@ statement:
         var_assign              TERMINATOR
     |   var_declare             TERMINATOR
     |   expression              TERMINATOR
+    |   add_element             TERMINATOR
     |   func_def
     |   range_loop;
     
@@ -26,6 +27,14 @@ constant:
         INT_VAL
     |   STR_VAL
     |   FLT_VAL;
+
+html_output_type:
+        VIDEO
+    |   AUDIO
+    |   IMAGE;
+  
+add_element:
+        OUTPUT_HTML html_output_type expression;
     
 range_loop:
     LOOP expression PIPE expression ARROW IDENTIFIER LBRACE block RBRACE;

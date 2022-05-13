@@ -91,6 +91,26 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitConstant([NotNull] ParserDefinition.ConstantContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.html_output_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterHtml_output_type([NotNull] ParserDefinition.Html_output_typeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.html_output_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitHtml_output_type([NotNull] ParserDefinition.Html_output_typeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.add_element"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAdd_element([NotNull] ParserDefinition.Add_elementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.add_element"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAdd_element([NotNull] ParserDefinition.Add_elementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="ParserDefinition.range_loop"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

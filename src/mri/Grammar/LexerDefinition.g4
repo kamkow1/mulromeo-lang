@@ -27,6 +27,11 @@ INT                 : 'int';
 STRING              : 'str';
 FLOAT               : 'flt';
 
+// html output types
+IMAGE               : 'image';
+VIDEO               : 'video';
+AUDIO               : 'audio';
+
 // terminator
 TERMINATOR          : ';';
 
@@ -38,6 +43,7 @@ RBRACE              : '}';
 PIPE                : '|';
 ARROW               : '->';
 AMP                 : '&';
+OUTPUT_HTML         : '$>';
 
 IDENTIFIER          : [a-zA-Z_] [a-zA-Z_0-9]*;
 WHITESPACE          : [ \r\n\t]+    -> skip;

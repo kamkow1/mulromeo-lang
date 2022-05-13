@@ -20,6 +20,7 @@ namespace mri;
 public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 {
     private readonly Dictionary<string, object?> _variables = new();
+    private readonly IndexCreator _indexCreator = new();
 
     public AstNodeVisitor()
     {
@@ -33,7 +34,7 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
     private object? MkIndex(object?[] args)
     {
         var path = args[0] as string + "/index.html";
-        var index = new IndexBuilder().Build();
+        var index = _indexCreator.Make();
         File.WriteAllText(path, index);
         return null;
     }
@@ -240,5 +241,35 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         if (_variables.TryGetValue(context.IDENTIFIER().GetText(), out var result))
             return result;
         throw new Exception($"{context.IDENTIFIER().GetText()} does not exist");
+    }
+
+    public override object? VisitHtml_output_type(ParserDefinition.Html_output_typeContext context)
+    {
+        if (context.AUDIO() is { } audio)
+            return audio.GetText();
+        
+        if (context.VIDEO() is { } video)
+            return video.GetText();
+
+        if (context.IMAGE() is { } image)
+            return image.GetText();
+
+        throw new Exception($"unknown type");
+    }
+
+    public override object? VisitAdd_element(ParserDefinition.Add_elementContext context)
+    {
+        var type = Visit(context.html_output_type()) as string;
+        var src = Visit(context.expression()) as string;
+
+        switch (type)
+        {
+            case "image":
+            {
+                _indexCreator.AddImgElement(src);
+                return null;
+            }
+            default: throw new Exception("unimplemented");
+        }
     }
 }
