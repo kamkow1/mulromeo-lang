@@ -11,7 +11,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <MantineProvider>
+    <MantineProvider theme={{
+      colorScheme: 'dark'
+    }}>
       <App />
     </MantineProvider>
   </React.StrictMode>
