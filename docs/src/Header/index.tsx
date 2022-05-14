@@ -8,6 +8,7 @@ export default function Index() {
         <Header height='68' p='md'>
             <Button
                 variant='subtle' 
+                color='dark'
                 radius='xs'
                 onClick={() => navigate('/', { replace: true })}
             >
