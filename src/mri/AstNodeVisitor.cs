@@ -13,7 +13,7 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         _variables["__file_path__"] = filePath + "/";
         _variables["__file_dir__"] = fileDir + "/"; 
         
-        _variables["get"]   = new Func<object?[], object?>(Get);
+        _variables["get"]       = new Func<object?[], object?>(Get);
         _variables["print"]     = new Func<object?[], object?>(Print);
         _variables["save"]      = new Func<object?[], object?>(Save);
         _variables["mkdir"]     = new Func<object?[], object?>(MkDir);
