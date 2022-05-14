@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Net;
+﻿using System.Net;
 using Newtonsoft.Json;
 
 namespace mri;
@@ -21,51 +20,15 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         _variables["mkhtml"]    = new Func<object?[], object?>(MkHtml);
     }
 
-    private object? MkHtml(object?[] args)
-    {
-        var path = args[0] as string + $"/{args[1] as string}.html";
-        var index = _htmlCreator.Make();
-        File.WriteAllText(path, index);
-        return null;
-    }
+    private object? MkHtml(object?[] args)  => Functions.MkHtml.Ivoke(args, _htmlCreator);
 
-    private object? MkDir(object?[] args)
-    {
-        Directory.CreateDirectory(args[0] as string);
-        return null;
-    }
+    private object? MkDir(object?[] args)   => Functions.MkDir.Invoke(args);
 
-    private object? Save(object?[] args)
-    {
-        var path = args[0] as string;
-        var content = args[1] as byte[];
+    private object? Save(object?[] args)    => Functions.Save.Invoke(args);
 
-        File.WriteAllBytes(path, content);
-        return null;
-    }
+    private object? Print(object?[] args)   => Functions.Print.Invoke(args, _variables);
 
-    private object? Print(object?[] args)
-    {
-        foreach (var arg in args)
-        {
-            Console.WriteLine(_variables.ContainsKey(arg as string ?? "")
-                ? JsonConvert.SerializeObject(_variables[arg as string], Formatting.Indented)
-                : JsonConvert.SerializeObject(arg, Formatting.Indented));
-        }
-            
-        return null;
-    }
-
-    private object? Get(object? url)
-    {
-        using var client = new WebClient();
-        var file = client.DownloadData(JsonConvert.SerializeObject(url)
-                                                    .Replace("[", "")
-                                                    .Replace("]", "")
-                                                    .Replace("\"", "")
-        );
-        return file;
-    }
+    private object? Get(object? url)        => Functions.Get.Invoke(url);
 
     public override object? VisitVar_assign(ParserDefinition.Var_assignContext context)
     {
