@@ -2,7 +2,7 @@
 
 namespace mri.Functions;
 
-public static class Print
+public class Print : IFunction
 {
     public static object? Invoke(object?[] args, Dictionary<string, object?> variables)
     {

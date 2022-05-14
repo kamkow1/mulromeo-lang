@@ -1,6 +1,6 @@
 ﻿namespace mri.Functions;
 
-public static class MkDir
+public class MkDir : IFunction
 {
     public static object? Invoke(object?[] args)
     {

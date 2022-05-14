@@ -1,6 +1,6 @@
 ﻿namespace mri.Functions;
 
-public static class Save
+public class Save : IFunction
 {
     public static object? Invoke(object?[] args)
     {

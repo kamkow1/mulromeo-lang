@@ -20,7 +20,7 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         _variables["mkhtml"]    = new Func<object?[], object?>(MkHtml);
     }
 
-    private object? MkHtml(object?[] args)  => Functions.MkHtml.Ivoke(args, _htmlCreator);
+    private object? MkHtml(object?[] args)  => Functions.MkHtml.Invoke(args, _htmlCreator);
 
     private object? MkDir(object?[] args)   => Functions.MkDir.Invoke(args);
 
@@ -28,7 +28,7 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
 
     private object? Print(object?[] args)   => Functions.Print.Invoke(args, _variables);
 
-    private object? Get(object? url)        => Functions.Get.Invoke(url);
+    private object? Get(object?[] args)        => Functions.Get.Invoke(args);
 
     public override object? VisitVar_assign(ParserDefinition.Var_assignContext context)
     {

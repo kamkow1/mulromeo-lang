@@ -3,15 +3,15 @@ using Newtonsoft.Json;
 
 namespace mri.Functions;
 
-public static class Get
+public class Get : IFunction
 {
-    public static object? Invoke(object? url)
+    public static object? Invoke(object?[] args)
     {
         using var client = new WebClient();
-        var file = client.DownloadData(JsonConvert.SerializeObject(url)
+        var file = client.DownloadData((args[0] as string)!/*JsonConvert.SerializeObject(args[0])
             .Replace("[", "")
             .Replace("]", "")
-            .Replace("\"", "")
+            .Replace("\"", "")*/
         );
         return file;
     }
