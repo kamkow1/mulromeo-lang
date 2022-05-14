@@ -171,6 +171,26 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitReference([NotNull] ParserDefinition.ReferenceContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.array"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArray([NotNull] ParserDefinition.ArrayContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.array"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArray([NotNull] ParserDefinition.ArrayContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.array_get_elem"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArray_get_elem([NotNull] ParserDefinition.Array_get_elemContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.array_get_elem"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArray_get_elem([NotNull] ParserDefinition.Array_get_elemContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
@@ -182,6 +202,18 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitConstantExpression([NotNull] ParserDefinition.ConstantExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>arrayExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrayExpression([NotNull] ParserDefinition.ArrayExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>arrayExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrayExpression([NotNull] ParserDefinition.ArrayExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>addExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
@@ -218,6 +250,18 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitIdentifierExpression([NotNull] ParserDefinition.IdentifierExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>arrayGetElemtExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrayGetElemtExpression([NotNull] ParserDefinition.ArrayGetElemtExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>arrayGetElemtExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrayGetElemtExpression([NotNull] ParserDefinition.ArrayGetElemtExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>divExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.

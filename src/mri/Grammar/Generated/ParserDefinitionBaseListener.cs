@@ -204,6 +204,30 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitReference([NotNull] ParserDefinition.ReferenceContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.array"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArray([NotNull] ParserDefinition.ArrayContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.array"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArray([NotNull] ParserDefinition.ArrayContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParserDefinition.array_get_elem"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArray_get_elem([NotNull] ParserDefinition.Array_get_elemContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParserDefinition.array_get_elem"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArray_get_elem([NotNull] ParserDefinition.Array_get_elemContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -217,6 +241,20 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitConstantExpression([NotNull] ParserDefinition.ConstantExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>arrayExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrayExpression([NotNull] ParserDefinition.ArrayExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>arrayExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrayExpression([NotNull] ParserDefinition.ArrayExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>addExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
@@ -259,6 +297,20 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIdentifierExpression([NotNull] ParserDefinition.IdentifierExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>arrayGetElemtExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrayGetElemtExpression([NotNull] ParserDefinition.ArrayGetElemtExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>arrayGetElemtExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrayGetElemtExpression([NotNull] ParserDefinition.ArrayGetElemtExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>divExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.

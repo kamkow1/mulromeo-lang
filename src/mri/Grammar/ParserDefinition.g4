@@ -16,7 +16,7 @@ statement:
     |   add_element             TERMINATOR
     |   flush_memory            TERMINATOR
     |   func_def
-    |   range_loop              TERMINATOR;
+    |   range_loop;
     
 var_assign:
         IDENTIFIER ASSIGN expression;
@@ -41,7 +41,7 @@ range_loop:
         LOOP expression PIPE expression ARROW IDENTIFIER LBRACE block RBRACE;
     
 flush_memory:
-        AT FLUSH LSQBR (expression (',' expression)*)? RSQBR;
+        AT FLUSH PIPE (expression (',' expression)*)? PIPE;
     
 return_type:
     |   VOID
@@ -57,11 +57,19 @@ func_invoke:
     
 reference:
         AMP IDENTIFIER;  
+        
+array:
+        LSQBR (expression (',' expression)*)? RSQBR;
+        
+array_get_elem:
+        IDENTIFIER ARROW expression;
       
 expression:
         constant                    #constantExpression
     |   IDENTIFIER                  #identifierExpression
     |   reference                   #referenceExpression
+    |   array                       #arrayExpression
+    |   array_get_elem              #arrayGetElemtExpression
     |   func_invoke                 #invokeFunction
     |   expression ADD expression   #addExpression
     |   expression DIV expression   #divExpression

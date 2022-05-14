@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections;
+using System.Net;
 using Newtonsoft.Json;
 
 namespace mri;
@@ -282,5 +283,23 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         }
 
         return null;
+    }
+
+    public override object? VisitArray(ParserDefinition.ArrayContext context)
+    {
+        return context.expression().Select(Visit).ToArray();
+    }
+
+    public override object? VisitArray_get_elem(ParserDefinition.Array_get_elemContext context)
+    {
+        var name = context.IDENTIFIER().GetText();
+        var index = Visit(context.expression()) as int?;
+        Console.WriteLine(index);
+        Console.WriteLine(JsonConvert.SerializeObject(_variables[name], Formatting.Indented));
+
+        if (!_variables.ContainsKey(name))
+            throw new Exception($"{name} does not exist");
+
+        return (_variables[name] as Array).GetValue(index.Value);
     }
 }

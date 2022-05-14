@@ -116,12 +116,31 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitReference([NotNull] ParserDefinition.ReferenceContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.array"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitArray([NotNull] ParserDefinition.ArrayContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParserDefinition.array_get_elem"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitArray_get_elem([NotNull] ParserDefinition.Array_get_elemContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitConstantExpression([NotNull] ParserDefinition.ConstantExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>arrayExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitArrayExpression([NotNull] ParserDefinition.ArrayExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>addExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
@@ -143,6 +162,13 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitIdentifierExpression([NotNull] ParserDefinition.IdentifierExpressionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>arrayGetElemtExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitArrayGetElemtExpression([NotNull] ParserDefinition.ArrayGetElemtExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>divExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
