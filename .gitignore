@@ -4,7 +4,7 @@ src/mri/obj
 src/mult-dl-api/node_modules
 src/mult-dl-api/package-lock.json
 src/mult-dl-api/.env
-src/mult-dl-api/temp/
+src/mult-dl-api/temp
 
 docs/node_modules
 docs/.pnp
