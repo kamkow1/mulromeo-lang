@@ -1,9 +1,7 @@
 src/mri/bin/
 src/mri/obj
 
-src/video-dl-api/node_modules
-src/video-dl-api/package-lock.json
-src/video-dl-api/.env
+src/video-dl-api/venv
 
 docs/node_modules
 docs/.pnp
