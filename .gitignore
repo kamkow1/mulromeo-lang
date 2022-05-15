@@ -2,6 +2,9 @@ src/mri/bin/
 src/mri/obj
 
 src/video-dl-api/venv
+src/video-dl-api/Lib
+src/video-dl-api/Include
+src/video-dl-api/Scripts
 
 docs/node_modules
 docs/.pnp
