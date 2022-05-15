@@ -1,10 +1,9 @@
 src/mri/bin/
 src/mri/obj
 
-src/video-dl-api/venv
-src/video-dl-api/Lib
-src/video-dl-api/Include
-src/video-dl-api/Scripts
+src/video-dl-api/node_modules
+src/video-dl-api/package-lock.json
+src/video-dl-api/.env
 
 docs/node_modules
 docs/.pnp
