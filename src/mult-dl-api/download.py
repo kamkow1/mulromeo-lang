@@ -1,3 +1,4 @@
+import base64
 import sys
 import youtube_dl
 import glob
@@ -10,7 +11,8 @@ with contextlib.redirect_stdout(None):
     file_format = sys.argv[2]
 
     video_info = youtube_dl.YoutubeDL().extract_info(url=url, download=False)
-    file_name = f"cache/{video_info['title']}.{file_format}"
+    title = video_info['title'].replace(" ", "_")
+    file_name = f"cache/{title}.{file_format}"
     options={
         "format"    : "bestaudio/best",
         "keepvideo" : False,
@@ -22,10 +24,9 @@ with contextlib.redirect_stdout(None):
         ydl.cache.remove()
         ydl.download([video_info["webpage_url"]])
 
-    # read cache
-    media = open(file_name, "rb").read()
+# return cached file name
+print(file_name)
 
-print(media)
 
 # clear cache
 #files = glob.glob("cache/")

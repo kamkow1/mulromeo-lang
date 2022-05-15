@@ -10,7 +10,9 @@ app.get('/api/get-video', (req, res) => {
     const pythonProcess = spawn('python', ['./download.py', target, format])
 
     pythonProcess.stdout.on('data', (data) => {
-        res.send(data)
+        const fileName = data.toString().trim()
+        console.log(`sending file: ${fileName}`)
+        res.download(`./${fileName}`)
         pythonProcess.stdout.removeAllListeners('data')
     })
 })
