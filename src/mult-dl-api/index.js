@@ -1,33 +1,30 @@
-const app = require('express')()
-const port = 8080
+const app               = require('express')()
+const ytdl              = require('ytdl-core')
+const morgan            = require('morgan')
+const http              = require('http')
+const https             = require('https')
 
-const { spawn } = require('child_process')
+const port = process.env.PORT || 3000
 
-app.get('/api/get-video', (req, res) => {
+app.use(morgan('dev'))
 
+app.get('/api/media', (req, res) => {
+    
     const target = req.query.target
     const format = req.query.format
-
-    const downloadProcess = spawn('python', ['./download.py', target, format])
-
-    downloadProcess.stdout.on('data', data => {
-        const fileName = data.toString().trim()
-        console.log(`sending file: ${fileName}`)
-
-        res.download(`./${fileName}`)
-        clearCache()
-
-        downloadProcess.stdout.removeAllListeners('data')
-    })
-
+    
+    ytdl(target, { format: format }).pipe(res)
 })
 
-function clearCache() {
-    console.log('after request')
-    const clearCacheProcess = spawn('python', ['./clear_cache.py'])
+app.get('/api/image', (req, res) => {
+    const target = new URL(req.query.target)
 
-    clearCacheProcess.stdout.on('data', data => console.log(data.toString()))
-}
+    switch (target.protocol) {
+        case 'http:': http.get(target, resp => resp.pipe(res))
+        case 'https:': https.get(target, resp => resp.pipe(res))
+    }
+})
+
 
 app.listen(port)
 console.log(`listening on port: ${port}`)

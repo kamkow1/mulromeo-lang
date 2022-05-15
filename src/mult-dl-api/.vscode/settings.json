@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/9d8f2beb-2f1b-4a16-9768-beed17a7c71e/resourceGroups/mulromeo/providers/Microsoft.Web/sites/mult-dl-api",
+    "appService.deploySubpath": "."
+}
