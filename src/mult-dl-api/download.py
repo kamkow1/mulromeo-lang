@@ -1,9 +1,8 @@
-import base64
 import sys
 import youtube_dl
-import glob
 import os
 import contextlib
+import shutil
 
 # silence stdout from external modules
 with contextlib.redirect_stdout(None):
@@ -26,9 +25,3 @@ with contextlib.redirect_stdout(None):
 
 # return cached file name
 print(file_name)
-
-
-# clear cache
-#files = glob.glob("cache/")
-#for f in files:
-#    os.remove(f)
