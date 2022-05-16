@@ -1,0 +1,6 @@
+*.ts linguist-language=Typescript
+*.tsx linguist-language=Typescript
+*.js linguist-language=Javascript
+*.cs linguist-language=C#
+*.css linguist-language=CSS
+*.g4 linguist-language=ANTLR
