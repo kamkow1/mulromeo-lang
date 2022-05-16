@@ -1,3 +1,5 @@
+clear_assets;
+
 assets = &__file_dir__ + "assets/";
 images = &assets + "img/";
 audios = &assets + "audio/";
@@ -6,13 +8,26 @@ mkdir &assets;
 mkdir &images;
 mkdir &audios;
 
-arr = [1, 2, 3];
+jpg_image_urls = [
+    "http://media.moddb.com/images/members/5/4550/4549205/duck.jpg",
+    "http://www.rd.com/wp-content/uploads/2021/04/GettyImages-1145794687.jpg",
+    "http://img.xcitefun.net/users/2010/05/179319,xcitefun-random-fun-1.jpg",
+    "http://cdn.ebaumsworld.com/mediaFiles/picture/2446773/85240823.png",
+    "http://i1.sndcdn.com/avatars-000208242028-o7xw0o-t500x500.jpg"
+];
 
-print arr->1;
+mp3_audio_urls = [
+    "http://youtu.be/rNoLLm87IHk",
+    "http://youtu.be/4QPQonFLzK4",
+    "http://youtu.be/uqN40rXAlOQ",
+    "http://youtu.be/Bem6qTGxhTI?list=PLXQKcigLe8R45Y_KrfC5szIR4Uni0sR5p",
+    "https://youtu.be/fAg9iVOM85Q",
+    "https://youtu.be/r1hnmmHh3fA"
+];
 
-loop 0 | 10 -> i {
-    img = get "https://picsum.photos/1920/1080";
-    name = "img_" + &i;
+loop 1 | (arr_get_length jpg_image_urls) -> i {
+    img = get jpg_image_urls->&i, "image", "jpg";
+    name = "png_img_" + &i;
     full_name = &name + ".png";
     full_path = &images + &full_name;
 
@@ -25,9 +40,9 @@ loop 0 | 10 -> i {
 
 @flush! | i, img, name, full_name, full_path |;
 
-loop 0 | 10 -> i {
-    audio_file = get "https://w3codegenerator.com/audio/audio.mp3";
-    name = "audio_" + &i;
+loop 1 | (arr_get_length mp3_audio_urls) -> i {
+    audio_file = get mp3_audio_urls->&i, "media", "mp3";
+    name = "mp3_audio_" + &i;
     full_name = &name + ".mp3";
     full_path = &audios + &full_name;
 

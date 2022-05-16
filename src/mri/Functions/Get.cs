@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using Newtonsoft.Json;
 
 namespace mri.Functions;
 
