@@ -228,6 +228,20 @@ public partial class ParserDefinitionBaseListener : IParserDefinitionListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitArray_get_elem([NotNull] ParserDefinition.Array_get_elemContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>emphExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterEmphExpression([NotNull] ParserDefinition.EmphExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>emphExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitEmphExpression([NotNull] ParserDefinition.EmphExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// <para>The default implementation does nothing.</para>

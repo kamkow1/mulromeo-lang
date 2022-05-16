@@ -13,22 +13,25 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         _variables["__file_path__"] = filePath + "/";
         _variables["__file_dir__"] = fileDir + "/"; 
         
-        _variables["get"]       = new Func<object?[], object?>(Get);
-        _variables["print"]     = new Func<object?[], object?>(Print);
-        _variables["save"]      = new Func<object?[], object?>(Save);
-        _variables["mkdir"]     = new Func<object?[], object?>(MkDir);
-        _variables["mkhtml"]    = new Func<object?[], object?>(MkHtml);
+        _variables["get"]               = new Func<object?[], object?>(Get);
+        _variables["print"]             = new Func<object?[], object?>(Print);
+        _variables["save"]              = new Func<object?[], object?>(Save);
+        _variables["mkdir"]             = new Func<object?[], object?>(MkDir);
+        _variables["mkhtml"]            = new Func<object?[], object?>(MkHtml);
+        _variables["arr_get_length"]    = new Func<object?[], object?>(ArrGetLength);
     }
 
     private object? MkHtml(object?[] args)  => Functions.MkHtml.Invoke(args, _htmlCreator);
 
-    private object? MkDir(object?[] args)   => Functions.MkDir.Invoke(args);
+    private object? MkDir(object?[] args)       => Functions.MkDir.Invoke(args);
 
-    private object? Save(object?[] args)    => Functions.Save.Invoke(args);
+    private object? Save(object?[] args)        => Functions.Save.Invoke(args);
 
-    private object? Print(object?[] args)   => Functions.Print.Invoke(args, _variables);
+    private object? Print(object?[] args)       => Functions.Print.Invoke(args, _variables);
 
-    private object? Get(object?[] args)        => Functions.Get.Invoke(args);
+    private object? Get(object?[] args)         => Functions.Get.Invoke(args);
+
+    private object? ArrGetLength(object?[] args) => Functions.ArrGetLength.Invoke(args, _variables);
 
     public override object? VisitVar_assign(ParserDefinition.Var_assignContext context)
     {
@@ -264,5 +267,11 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
             throw new Exception($"{name} does not exist");
 
         return (_variables[name] as Array).GetValue(index.Value);
+    }
+
+    public override object? VisitEmphExpression(ParserDefinition.EmphExpressionContext context)
+    {
+        Console.WriteLine("eoeoeoo");
+        return Visit(context.expression());
     }
 }

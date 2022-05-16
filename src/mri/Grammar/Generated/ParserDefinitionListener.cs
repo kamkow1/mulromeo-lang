@@ -191,6 +191,18 @@ public interface IParserDefinitionListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitArray_get_elem([NotNull] ParserDefinition.Array_get_elemContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>emphExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterEmphExpression([NotNull] ParserDefinition.EmphExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>emphExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitEmphExpression([NotNull] ParserDefinition.EmphExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>

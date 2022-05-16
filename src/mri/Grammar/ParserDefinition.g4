@@ -70,6 +70,7 @@ expression:
     |   reference                   #referenceExpression
     |   array                       #arrayExpression
     |   array_get_elem              #arrayGetElemtExpression
+    |   LPAREN expression RPAREN    #emphExpression
     |   func_invoke                 #invokeFunction
     |   expression ADD expression   #addExpression
     |   expression DIV expression   #divExpression

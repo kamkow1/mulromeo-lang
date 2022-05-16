@@ -128,6 +128,13 @@ public interface IParserDefinitionVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitArray_get_elem([NotNull] ParserDefinition.Array_get_elemContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>emphExpression</c>
+	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEmphExpression([NotNull] ParserDefinition.EmphExpressionContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>constantExpression</c>
 	/// labeled alternative in <see cref="ParserDefinition.expression"/>.
 	/// </summary>
