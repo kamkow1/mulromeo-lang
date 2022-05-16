@@ -19,10 +19,9 @@ app.get('/api/media', (req, res) => {
 app.get('/api/image', (req, res) => {
     const target = new URL(req.query.target)
 
-    switch (target.protocol) {
-        case 'http:': http.get(target, resp => resp.pipe(res))
-        case 'https:': https.get(target, resp => resp.pipe(res))
-    }
+    if (target.protocol.includes('http')) http.get(target, resp => resp.pipe(res))
+
+    if (target.protocol.includes('https')) https.get(target, resp => resp.pipe(res))
 })
 
 
