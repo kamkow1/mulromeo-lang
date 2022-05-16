@@ -19,8 +19,11 @@ public class AstNodeVisitor : ParserDefinitionBaseVisitor<object?>
         _variables["mkdir"]             = new Func<object?[], object?>(MkDir);
         _variables["mkhtml"]            = new Func<object?[], object?>(MkHtml);
         _variables["arr_get_length"]    = new Func<object?[], object?>(ArrGetLength);
+        _variables["clear_assets"]      = new Func<object?[], object?>(ClearAssets);
     }
 
+    private object? ClearAssets(object?[] _) => Functions.ClearAssets.Invoke(_variables["__file_dir__"] as string);
+    
     private object? MkHtml(object?[] args)  => Functions.MkHtml.Invoke(args, _htmlCreator);
 
     private object? MkDir(object?[] args)       => Functions.MkDir.Invoke(args);
